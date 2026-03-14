@@ -13,3 +13,4 @@ This project is a simple AI chatbot built with Python and Ollama.
 1. Install Ollama
 2. Pull the model
 
+# elhafianeahmed053-lab
