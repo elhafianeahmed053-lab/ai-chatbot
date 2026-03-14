@@ -4,20 +4,29 @@ url = "http://localhost:11434/api/generate"
 
 print("Local AI Chatbot (type 'exit' to quit)\n")
 
-while True:
-    prompt = input("You: ")
+conversation = ""
 
-    if prompt.lower() == "exit":
+while True:
+    user_input = input("You: ")
+
+    if user_input.lower() == "exit":
         break
+
+    conversation += f"User: {user_input}\nAI: "
 
     response = requests.post(
         url,
         json={
             "model": "codellama",
-            "prompt": prompt,
+            "prompt": conversation,
             "stream": False
         }
     )
 
     data = response.json()
-    print("\nAI:", data["response"], "\n")
+    ai_reply = data["response"]
+
+    conversation += ai_reply + "\n"
+
+    print("\nAI:", ai_reply, "\n")
+
